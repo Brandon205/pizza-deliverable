@@ -1,27 +1,26 @@
 import React from 'react';
-import axios from 'axios';
+import {
+  BrowserRouter as Router,
+  Route,
+  Link
+}from 'react-router-dom';
+import Pizzas from './Pizzas';
+import Pizza from './Pizza';
 import './App.css';
 
 class App extends React.Component {
-  state = {
-    pizzas: []
-  }
-
-  componentDidMount = () => {
-    fetch('/pizzas').then(response => response.json())
-    .then(json => {
-      this.setState({ pizzas: json });
-    })
-  }
-
   render() {
-    const mappedPizzas = this.state.pizzas.map((pizza, id) => <p key={id}>{pizza.name} - {pizza.price}</p> )
     return (
-      <div className="App">
-        {mappedPizzas}
-      </div>
+      <Router>
+        <nav>
+          <Link to="/pizzas">Pizzas</Link>
+          <Link to="/toppings">Toppings</Link>
+        </nav>
+        <Route exact path="/pizzas" component={Pizzas} />
+        <Route path="/pizzas/:id" render={ (props) => <Pizza {...props} /> } />
+      </Router>
     );
-}
+  }
 }
 
 export default App;

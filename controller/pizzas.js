@@ -1,5 +1,4 @@
 const express = require('express');
-const mongoose = require('mongoose');
 const router = express.Router();
 const Pizza = require('../models/pizza');
 const Topping = require('../models/topping');
