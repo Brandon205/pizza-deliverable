@@ -12,9 +12,20 @@ class Toppings extends React.Component {
   }
 
   render() {
-  let mappedToppings = this.state.toppings.map(topping => <div> <h2>{topping.name}</h2> <p>{topping.amount}</p> </div>)
+  let mappedToppings = this.state.toppings.map(topping => { 
     return (
-      <div className="app">
+      <div key={topping._id}>
+        <h2>{topping.name}</h2> 
+        <p>{topping.amount}</p> 
+        <form action={`/toppings/${topping._id}/?_method=DELETE`} method="POST">
+          <input type="submit" value="Delete"/>
+        </form>
+      </div>
+    )
+  });
+
+    return (
+      <div className="App">
       {mappedToppings}
       <form action="/toppings" method="POST">
         <input type="text" name="name" id="name" placeholder="Name"/>

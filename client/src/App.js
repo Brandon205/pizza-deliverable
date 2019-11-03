@@ -14,8 +14,8 @@ class App extends React.Component {
     return (
       <Router>
         <nav>
-          <Link to="/pizzas">Pizzas</Link>
-          <Link to="/toppings">Toppings</Link>
+          <Link to="/pizzas" className="link">Pizzas</Link>{' | '}
+          <Link to="/toppings" className="link">Toppings</Link>
         </nav>
         <Route exact path="/pizzas" component={Pizzas} />
         <Route path="/pizzas/:id" render={ (props) => <Pizza {...props} /> } />

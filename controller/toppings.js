@@ -1,7 +1,5 @@
 const express = require('express');
-const mongoose = require('mongoose');
 const router = express.Router();
-const Pizza = require('../models/pizza');
 const Topping = require('../models/topping');
 
 router.get('/', (req, res) => {
@@ -18,7 +16,14 @@ router.post('/', (req, res) => {
     amount: req.body.amount
   }, (err) => {
     res.redirect('/toppings');
-  })
-})
+  });
+});
+
+router.delete('/:id', (req, res) => {
+  Topping.findByIdAndDelete(req.params.id, (err) => {
+    if (err) return console.log(err);
+    res.redirect('/toppings');
+  });
+});
 
 module.exports = router
