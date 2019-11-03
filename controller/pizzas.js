@@ -35,7 +35,7 @@ router.post('/:id/toppings', (req, res) => {
     Topping.findById(req.body.toppingId, (err, topping) => {
       pizza.toppings.push(topping);
       pizza.save( (err) => {
-        res.json(pizza);
+        res.redirect(`/pizzas/${req.params.id}`);
       });
     });
   });
