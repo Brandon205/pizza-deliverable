@@ -17,6 +17,12 @@ class Pizzas extends React.Component {
     return (
       <div className="App">
         {mappedPizzas}
+        <h3>Add a new Pizza</h3>
+        <form action="/pizzas" method="POST">
+          <input type="text" name="name" id="name" placeholder="Name" />
+          <input type="text" name="price" id="price" placeholder="price" />
+          <input type="submit" value="Add Pizza"/>
+        </form>
       </div>
     )
   }

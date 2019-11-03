@@ -6,6 +6,7 @@ import {
 }from 'react-router-dom';
 import Pizzas from './Pizzas';
 import Pizza from './Pizza';
+import Toppings from './Toppings';
 import './App.css';
 
 class App extends React.Component {
@@ -18,6 +19,7 @@ class App extends React.Component {
         </nav>
         <Route exact path="/pizzas" component={Pizzas} />
         <Route path="/pizzas/:id" render={ (props) => <Pizza {...props} /> } />
+        <Route path="/toppings" component={Toppings} />
       </Router>
     );
   }

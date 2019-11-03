@@ -2,6 +2,7 @@ import React from 'react';
 import Axios from 'axios';
 
 var mapped;
+var allToppings;
 class Pizza extends React.Component {
   state = {
     pizza: []
@@ -10,8 +11,12 @@ class Pizza extends React.Component {
   componentDidMount = () => {
     Axios.get(`/pizzas/${this.props.match.params.id}`)
     .then(pizza => {
-      mapped = pizza.data.toppings.map(topping => <div> <h1>{topping.name}</h1> <p>{topping.amount}</p> </div>)
-      this.setState({ pizza: pizza.data });
+      Axios.get(`/toppings`)
+      .then(toppings => {
+        allToppings = toppings.data.map(topping => <div><h5>{topping.name}, Amount: {topping.amount}</h5></div>)
+        mapped = pizza.data.toppings.map(topping => <div> <h1>{topping.name}</h1> <p>{topping.amount}</p> </div>)
+        this.setState({ pizza: pizza.data });
+      })
     })
   }
 
@@ -21,8 +26,17 @@ class Pizza extends React.Component {
       <>
         <h1>{this.state.pizza.name}</h1>
         <p>${this.state.pizza.price}</p>
-        <h2>Toppings: </h2>
+        <h2>Current Toppings:</h2>
         <p>{mapped}</p>
+        <h3>Edit this Pizza</h3>
+        <form action={`/pizzas/${this.state.pizza._id}/?_method=PUT`} method="POST">
+          <input type="text" name="name" id="name" placeholder="Name"/>
+          <input type="text" name="price" id="price" placeholder="Price"/>
+          <input type="submit" value="Edit"/>
+        </form>
+
+        <h2>All Toppings:</h2>
+        {allToppings}
       </>
     )
   }

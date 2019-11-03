@@ -43,8 +43,9 @@ router.post('/:id/toppings', (req, res) => {
 
 router.put('/:id', (req, res) => {
   // Update a pizza via form
-  Pizza.findById(req.params.id, req.body, (err, pizza) => {
-    res.json(pizza)
+  Pizza.findByIdAndUpdate(req.params.id, {$set:req.body}, {new: true}, (err, pizza) => {
+    if (err) return console.log(err);
+    res.redirect(`/pizzas/${req.params.id}`);
   });
 });
 

@@ -1,8 +1,10 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const methodOverride = require('method-override');
 
 const app = express();
 app.use(express.urlencoded({ extended: false }));
+app.use(methodOverride('_method'));
 
 mongoose.connect('mongodb://localhost/pizzas', {useNewUrlParser: true, useUnifiedTopology: true});
 const db = mongoose.connection;
