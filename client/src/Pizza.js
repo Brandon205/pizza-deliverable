@@ -23,7 +23,7 @@ class Pizza extends React.Component {
               </form>
             </div>
           );
-        });
+        })
 
         mapped = pizza.data.toppings.map((topping, id) => {
           return (
@@ -31,23 +31,22 @@ class Pizza extends React.Component {
             <h5>{topping.name}</h5> 
             <p>{topping.amount}</p>
           </div>
-          )
-        });
+          );
+        })
         this.setState({ pizza: pizza.data });
       })
     })
   }
 
   render() {
-    // let mapped = this.state.pizza.toppings.map(topping => <div> <h1>{topping.name}</h1> <p>{topping.amount}</p> </div>)
     return (
       <div className="App">
         <h1>{this.state.pizza.name}</h1>
         <p>${this.state.pizza.price}</p>
         <h3>Edit this Pizza</h3>
         <form action={`/pizzas/${this.state.pizza._id}/?_method=PUT`} method="POST">
-          <input type="text" name="name" id="name" placeholder="Name"/>
-          <input type="text" name="price" id="price" placeholder="Price"/>
+          <input type="text" name="name" id="name" placeholder="Name"/> <br/>
+          <input type="text" name="price" id="price" placeholder="Price"/> <br/>
           <input type="submit" value="Edit"/>
         </form>
         <hr />
@@ -57,7 +56,7 @@ class Pizza extends React.Component {
         <h2>All Toppings:</h2>
         {allToppings}
       </div>
-    )
+    );
   }
 }
 

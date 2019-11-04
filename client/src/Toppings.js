@@ -16,24 +16,25 @@ class Toppings extends React.Component {
     return (
       <div key={topping._id}>
         <h2>{topping.name}</h2> 
-        <p>{topping.amount}</p> 
+        <p>Amount: {topping.amount}</p> 
         <form action={`/toppings/${topping._id}/?_method=DELETE`} method="POST">
           <input type="submit" value="Delete"/>
         </form>
       </div>
-    )
+    );
   });
 
     return (
       <div className="App">
       {mappedToppings}
+      <h2>Make a new Topping:</h2>
       <form action="/toppings" method="POST">
-        <input type="text" name="name" id="name" placeholder="Name"/>
-        <input type="text" name="amount" id="amount" placeholder="Amount"/>
+        <input type="text" name="name" id="name" placeholder="Name"/> <br/>
+        <input type="text" name="amount" id="amount" placeholder="Amount"/> <br/>
         <input type="submit" value="Add Topping"/>
       </form>
       </div>
-    )
+    );
   }
 }
 

@@ -19,12 +19,12 @@ class Pizzas extends React.Component {
         {mappedPizzas}
         <h3>Add a new Pizza</h3>
         <form action="/pizzas" method="POST">
-          <input type="text" name="name" id="name" placeholder="Name" />
-          <input type="text" name="price" id="price" placeholder="Price" />
+          <input type="text" name="name" id="name" placeholder="Name" /><br/>
+          <input type="text" name="price" id="price" placeholder="Price" /><br/>
           <input type="submit" value="Add Pizza"/>
         </form>
       </div>
-    )
+    );
   }
 }
 
